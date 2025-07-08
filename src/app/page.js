@@ -1,3 +1,4 @@
+import Credits from "@/components/Credits";
 import Form from "@/components/Form";
 import Header from "@/components/Header";
 import Image from "next/image";
@@ -11,6 +12,7 @@ export default function Home() {
       <div className="flex-1 w-full h-full flex flex-col justify-center items-center mt-20">
         <Form />
       </div>
+      <Credits />
     </div>
   )
 }
