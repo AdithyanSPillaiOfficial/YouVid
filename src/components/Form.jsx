@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import SelectQuality from './SelectQuality'
 import VideoView from './VideoView';
+import Loading from './Loading';
 
 
 function Form() {
@@ -14,6 +15,7 @@ function Form() {
     const [videoViewOpen, setVideoViewOpen] = useState(false);
     const [videoUrl, setVideoUrl] = useState('');
     const [isVideo, setIsVideo] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleView(format) {
         setFormatOpen(false);
@@ -29,6 +31,7 @@ function Form() {
     }
 
     async function handleSubmit() {
+        setIsLoading(true);
         if (urlInput.length < 28) {
             setError("Please enter a valid Youtube video URL")
         }
@@ -53,6 +56,7 @@ function Form() {
                 setError("Something went wrong.")
             }
             //setFormats(['1080p','4K','360p','480p','mp3'])
+            setIsLoading(false);
         }
 
     }
@@ -78,7 +82,7 @@ function Form() {
                 <VideoView videoUrl={videoUrl} isVideo={isVideo} formatOpen={formatOpen} handleFormatOpen={handleToggleFormat} />
             )}
 
-
+            {isLoading && (<Loading />)}
         </div>
     )
 }
