@@ -19,6 +19,7 @@ function Form() {
 
     async function handleView(format) {
         setFormatOpen(false);
+        setVideoViewOpen(false);
         if(format.mimetype.includes("audio")){
             setVideoUrl(`${process.env.NEXT_PUBLIC_SERVER_BASE}/audio?url=${urlInput}`)
             setIsVideo(false)
@@ -32,6 +33,7 @@ function Form() {
 
     async function handleSubmit() {
         setIsLoading(true);
+        setVideoViewOpen(false);
         if (urlInput.length < 28) {
             setError("Please enter a valid Youtube video URL")
         }
