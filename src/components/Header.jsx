@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import logo from '@/assets/logo.png'
 import { useRouter } from 'next/navigation'
+import { Github } from 'lucide-react';
 
 function Header() {
     const router = useRouter()
@@ -24,6 +25,7 @@ function Header() {
                 <div className='h-10 w-20 flex flex-row items-center justify-center rounded-2xl hover:bg-red-500 transition delay-50 cursor-default' onClick={tab.onClick} key={index}>{tab.title}</div>
             ))}
         </div>
+        <div className='ml-auto bg-black p-2 rounded-4xl'><a href="https://github.com/AdithyanSPillaiOfficial/YouVid" target='_blank'><Github color='white'/></a></div>
     </div>
   )
 }
