@@ -29,11 +29,11 @@ export async function GET(req) {
   }
 
   const videoId = ytdl.getURLVideoID(url);
-  const videoPath = `/tmp/temp_${videoId}_video.mp4`;
+  const videoPath = `/tmp/temp_${videoId}_${itag || quality}_video.mp4`;
   const audioPath = `/tmp/temp_${videoId}_audio.mp4`;
-  const outputPath = `/tmp/output_${videoId}.mp4`;
+  const outputPath = `/tmp/output_${videoId}_${itag || quality}.mp4`;
 
-  if (downloaded.has(videoId) && fs.existsSync(outputPath)) {
+  if (downloaded.has(`${videoId}_${itag || quality}`) && fs.existsSync(outputPath)) {
     return streamVideo(req, outputPath);
   }
 
@@ -68,7 +68,7 @@ export async function GET(req) {
     });
     
 
-    downloaded.add(videoId);
+    downloaded.add(`${videoId}_${itag || quality}`);
 
     return streamVideo(req, outputPath, () => {
       fs.unlinkSync(videoPath);
