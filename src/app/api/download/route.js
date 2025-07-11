@@ -47,6 +47,7 @@ export async function GET(req) {
         .on("finish", resolve)
         .on("error", reject);
     });
+    console.log("Video Downloaded")
 
     // Download audio
     await new Promise((resolve, reject) => {
@@ -55,6 +56,7 @@ export async function GET(req) {
         .on("finish", resolve)
         .on("error", reject);
     });
+    console.log("Audio Downloaded");
 
     // Merge audio and video
     await new Promise((resolve, reject) => {
@@ -111,7 +113,7 @@ function streamVideo(req, filePath, cleanup) {
 
     const readableStream = new ReadableStream({
       start(controller) {
-        stream.on("data", chunk => controller.enqueue(chunk));
+        stream.on("data", chunk => controller?.enqueue(chunk));
         stream.on("end", () => {
           controller.close();
           cleanup?.();
